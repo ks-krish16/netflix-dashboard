@@ -6,7 +6,8 @@ An interactive and visually engaging dashboard that displays insights on user de
 
 ## 🚀 Live Demo  
 
-[🔗 View Live Project]((https://creative-kringle-006526.netlify.app/) )  
+[🔗 View Live Project]
+((https://creative-kringle-006526.netlify.app/) )  
 
 ---
 
