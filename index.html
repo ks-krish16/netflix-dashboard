@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Analytics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Netflix+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Birthstone&family=Chocolate+Classical+Sans&family=Fugaz+One&family=Jua&family=Knewave&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pixelify+Sans:wght@400..700&family=Slabo+13px&family=Staatliches&family=Yeseva+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Netflix Loading Animation -->
+    <div id="netflix-loader" class="netflix-loader">
+        <div class="netflix-logo">
+            <svg viewBox="0 0 111 30" class="netflix-logo-svg">
+                <g fill="#E50914">
+                    <path d="M105.06233,14.2806261 L110.999156,30 C109.249227,29.7497422 107.500234,29.4366857 105.718437,29.1554972 L102.374168,20.4686475 L98.9371075,28.4375293 C97.2499766,28.1563408 95.5928391,28.061674 93.9057081,27.8432843 L99.9372012,14.0931671 L94.4680851,-5.68434189e-14 L99.5313525,-5.68434189e-14 L102.593495,7.87421502 L105.874965,-5.68434189e-14 L110.999156,-5.68434189e-14 L105.06233,14.2806261 Z M90.4686475,-5.68434189e-14 L85.8749649,-5.68434189e-14 L85.8749649,27.2499766 C87.3746368,27.3437061 88.9371075,27.4055675 90.4686475,27.5930265 L90.4686475,-5.68434189e-14 Z M81.9055207,26.93692 C77.7186241,26.6557316 73.5307901,26.4064111 69.250164,26.3117443 L69.250164,-5.68434189e-14 L73.9366389,-5.68434189e-14 L73.9366389,21.8745899 C76.6248008,21.9373887 79.3120255,22.1557784 81.9055207,22.2804387 L81.9055207,26.93692 Z M64.2496954,10.6561065 L64.2496954,15.3435186 L57.8442216,15.3435186 L57.8442216,25.9996251 L53.2186709,25.9996251 L53.2186709,-5.68434189e-14 L66.3436123,-5.68434189e-14 L66.3436123,4.68741213 L57.8442216,4.68741213 L57.8442216,10.6561065 L64.2496954,10.6561065 Z M45.3435186,4.68741213 L45.3435186,26.2498828 C43.7810479,26.2498828 42.1876465,26.2498828 40.6561065,26.3117443 L40.6561065,4.68741213 L35.8121661,4.68741213 L35.8121661,-5.68434189e-14 L50.2183897,-5.68434189e-14 L50.2183897,4.68741213 L45.3435186,4.68741213 Z M30.749836,15.5928391 C28.687787,15.5928391 26.2498828,15.5928391 24.4999531,15.6875059 L24.4999531,22.6562939 C27.2499766,22.4678976 30,22.2495079 32.7809542,22.1557784 L32.7809542,26.6557316 L19.812541,27.6876933 L19.812541,-5.68434189e-14 L32.7809542,-5.68434189e-14 L32.7809542,4.68741213 L24.4999531,4.68741213 L24.4999531,10.9991564 C26.3126816,10.9991564 29.0936358,10.9054269 30.749836,10.9054269 L30.749836,15.5928391 Z M4.78114163,12.9684132 L4.78114163,29.3429562 C3.09401069,29.5313525 1.59340144,29.7497422 0,30 L0,-5.68434189e-14 L4.4690224,-5.68434189e-14 L10.562377,17.0315868 L10.562377,-5.68434189e-14 L15.2497891,-5.68434189e-14 L15.2497891,28.061674 C13.5935889,28.3437998 11.906458,28.4375293 10.1246602,28.6868498 L4.78114163,12.9684132 Z"></path>
+                </g>
+            </svg>
+        </div>
+        <div class="loading-text">Loading Analytics...</div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="main-dashboard" class="main-dashboard hidden">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <svg viewBox="0 0 111 30" class="header-logo">
+                        <g fill="#E50914">
+                            <path d="M105.06233,14.2806261 L110.999156,30 C109.249227,29.7497422 107.500234,29.4366857 105.718437,29.1554972 L102.374168,20.4686475 L98.9371075,28.4375293 C97.2499766,28.1563408 95.5928391,28.061674 93.9057081,27.8432843 L99.9372012,14.0931671 L94.4680851,-5.68434189e-14 L99.5313525,-5.68434189e-14 L102.593495,7.87421502 L105.874965,-5.68434189e-14 L110.999156,-5.68434189e-14 L105.06233,14.2806261 Z M90.4686475,-5.68434189e-14 L85.8749649,-5.68434189e-14 L85.8749649,27.2499766 C87.3746368,27.3437061 88.9371075,27.4055675 90.4686475,27.5930265 L90.4686475,-5.68434189e-14 Z M81.9055207,26.93692 C77.7186241,26.6557316 73.5307901,26.4064111 69.250164,26.3117443 L69.250164,-5.68434189e-14 L73.9366389,-5.68434189e-14 L73.9366389,21.8745899 C76.6248008,21.9373887 79.3120255,22.1557784 81.9055207,22.2804387 L81.9055207,26.93692 Z M64.2496954,10.6561065 L64.2496954,15.3435186 L57.8442216,15.3435186 L57.8442216,25.9996251 L53.2186709,25.9996251 L53.2186709,-5.68434189e-14 L66.3436123,-5.68434189e-14 L66.3436123,4.68741213 L57.8442216,4.68741213 L57.8442216,10.6561065 L64.2496954,10.6561065 Z M45.3435186,4.68741213 L45.3435186,26.2498828 C43.7810479,26.2498828 42.1876465,26.2498828 40.6561065,26.3117443 L40.6561065,4.68741213 L35.8121661,4.68741213 L35.8121661,-5.68434189e-14 L50.2183897,-5.68434189e-14 L50.2183897,4.68741213 L45.3435186,4.68741213 Z M30.749836,15.5928391 C28.687787,15.5928391 26.2498828,15.5928391 24.4999531,15.6875059 L24.4999531,22.6562939 C27.2499766,22.4678976 30,22.2495079 32.7809542,22.1557784 L32.7809542,26.6557316 L19.812541,27.6876933 L19.812541,-5.68434189e-14 L32.7809542,-5.68434189e-14 L32.7809542,4.68741213 L24.4999531,4.68741213 L24.4999531,10.9991564 C26.3126816,10.9991564 29.0936358,10.9054269 30.749836,10.9054269 L30.749836,15.5928391 Z M4.78114163,12.9684132 L4.78114163,29.3429562 C3.09401069,29.5313525 1.59340144,29.7497422 0,30 L0,-5.68434189e-14 L4.4690224,-5.68434189e-14 L10.562377,17.0315868 L10.562377,-5.68434189e-14 L15.2497891,-5.68434189e-14 L15.2497891,28.061674 C13.5935889,28.3437998 11.906458,28.4375293 10.1246602,28.6868498 L4.78114163,12.9684132 Z"></path>
+                        </g>
+                    </svg>
+                    <span class="dashboard-title">Analytics Dashboard</span>
+                </div>
+               
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <div><button class="filter-btn active" data-filter="all">All Charts</button></div>
+                <div><button class="filter-btn" data-filter="row1">User Demographics</button></div>
+                <div><button class="filter-btn" data-filter="row2">Age-based Insights</button></div>
+                <div><button class="filter-btn" data-filter="row3">Viewing Behavior</button></div>
+                <div><button class="filter-btn" data-filter="row4">User Activity Trends</button></div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="charts-container">
+                <div class="charts-grid">
+                    <!-- Row 1: User Analytics --> 
+                    
+                            <div id="row-1" class="chart-row" data-row="row1"> 
+                                <div class="chart-card" data-row="row1">
+                                <div class="chart-header">
+                                    <h3>Gender distribution</h3>
+                                    
+                                </div>
+                                <div class="chart-content">
+                                
+                                
+                                    <img src="img/gender_dist.png" alt="Gender Distribution Chart">
+            
+                                    
+                                </div>
+                            </div>
+
+                            <div class="chart-card" data-row="row1">
+                                <div class="chart-header">
+                                    <h3>Subscription distribution</h3>
+                                
+                                </div>
+                                <div class="chart-content">
+                        
+                                        <img src="img/subscription_dist.png" alt="subscription distribution chart">
+                                
+                                </div>
+                            </div>
+
+                            <div class="chart-card" data-row="row1" >
+                                <div class="chart-header">
+                                    <h3>Region distribution</h3>
+                                    
+                                </div>
+                                <div class="chart-content">
+                                
+                                        <img src="img/region_dist1.png">
+                                    
+                                </div>
+                            </div>
+                           
+                   
+                         <div class="summary" data-summary="row1" style="display: none;">
+                                <h3>Gender distribution</h3><br>
+                                <p>The user base is almost evenly split among Male (33.08%), Female (34.22%), and Others (32.70%), indicating a diverse gender representation.</p><br>
+
+                                <br><h3>Regional distribution</h3>
+                                <p>Users are well-distributed across regions, with Europe and South America having slightly higher user counts. The difference among regions like Africa, Asia, Oceania, and North America remains marginal, showcasing a globally spread user base.</p><br>
+
+                                <br><h3>Subscription types</h3>
+                                <p>Subscriptions are nearly balanced among Basic (33.22%), Standard (32.92%), and Premium (33.86%), reflecting no dominant preference and a healthy adoption of all plans.</p>
+                            </div>
+                    </div> 
+
+                    <!-- Row 2 -->
+                     <div id="row-2" class="chart-row" data-row="row2">
+                        <div class="chart-card" data-row="row2">
+                        <div class="chart-header">
+                            <h3>Age vs Users distribution</h3>
+                           
+                        </div>
+                        <div class="chart-content">
+                            <img src="img/age_vs_user1.png">
+                        </div>
+                    </div>
+
+                    <div class="chart-card" data-row="row2">
+                        <div class="chart-header">
+                            <h3>Age vs profiles distribution</h3>
+                            
+                        </div>
+                        <div class="chart-content">
+                            <img src="img/age_vs_profiles1.png">
+                        </div>
+                    </div>
+
+                    <div class="chart-card" data-row="row2">
+                        <div class="chart-header">
+                            <h3>Age vs region distribution</h3>
+                            
+                        </div>
+                        <div class="chart-content">
+                            <img src="img/region_vs_age1.png"> 
+                        </div>
+                    </div>
+                    
+
+                    <div class="summary" data-summary="row2" style="display: none;">
+                        <h3>Age vs number of profiles</h3><br>
+                        <p>Across all age groups, users tend to maintain 2 to 4 profiles on average, with very little variation. This suggests consistent multi-profile usage behavior irrespective of age.</p><br>
+
+                        <br><h3>Age Group & Subscription Type Distribution:</h3><br>
+                        <br><p>The 18-28 and 28-38 age groups have the highest user counts, slightly favoring Premium and Standard subscriptions.</p>
+                        <p>User count slightly decreases in the 38-48 and 48-58 groups but remains balanced among all subscription types.</p>
+                        <p>The 58-68 group shows a slight resurgence, again with balanced subscription choices.</p>
+                        <p>The 68-78 group has the lowest user count, showing minimal subscription uptake.</p><br>
+
+                        <br><h3>Regional Distribution:</h3>
+                        <br><p>Users are fairly evenly spread across all regions, with Europe and South America having marginally higher user counts, and Oceania slightly lower.
+                        This confirms a globally diverse user base.</p>
+            
+                    </div>
+                     </div>
+                    
+                    <!-- Row 3 -->
+                     <div id="row-3" class="chart-row" data-row="row3">
+                            <div class="chart-card" data-row="row3">
+                            <div class="chart-header">
+                                <h3>Genre vs user distribution</h3>
+                                
+                            </div>
+                            <div class="chart-content">
+                                <img src="img/genre_vs_user2.png">
+                            </div>
+                        </div>
+
+                        <div class="chart-card" data-row="row3">
+                            <div class="chart-header">
+                                <h3>Age vs watch hour distribution</h3>
+                                
+                            </div>
+                            <div class="chart-content">
+                                <img src="img/age_vs_watchhr.png">
+                            </div>
+                        </div>
+
+                        <div class="chart-card" data-row="row3">
+                            <div class="chart-header">
+                                <h3>Age vs per day watch hours</h3>
+                            
+                            </div>
+                            <div class="chart-content">
+                                <img src="img/age_vs_perdaywatch1.png">
+                            </div>
+                        </div>
+                        <div class="summary" data-summary="row3" style="display: none;">
+                            <h3>Watch Patterns by Age Group</h3><br>
+                            <br><p>Total Hours: Highest in the 68–78 group, with steady viewing across all ages.</p>
+                            <p>Daily Average: Peaks at 48–58; lowest for 18–28 and 68–78, suggesting binge-watching or irregular viewing.</p><br>
+
+                            <br><h3>Genre Preferences</h3><br>
+                            <p>18–38: Prefer Action and Sci-Fi.</p>
+                            <p>48–68: Lean toward Drama, Romance, and Documentary.</p>
+                            <p>68–78: Smaller audience, but strong interest in Documentary and Drama.</p>
+                            </div>
+                     </div>
+                    
+
+                    <!-- Row 4 -->
+                    <div id="row-4" class="chart-row" data-row="row4">
+                            <div class="chart-card" data-row="row4">
+                                <div class="chart-header">
+                                    <h3>Active/inactive users </h3>
+                                    
+                                </div>
+                                <div class="chart-content">
+                                    <img src="img/activity_vs_user1.png">
+                                </div>
+                            </div>
+
+                            <div class="chart-card" data-row="row4">
+                                <div class="chart-header">
+                                    <h3>Last login days of user</h3>
+                                    
+                                </div>
+                                <div class="chart-content">
+                                    <img src="img/acitvityofuser_lastlogin1.png">
+                                </div>
+                            </div>
+
+                        <div class="summary" data-summary="row4" style="display: none;">
+                            <p>Active and inactive users are nearly equal in number, each around 2500, indicating a balanced user base. However, active users have more recent and consistent login behavior, with a higher median last login day, while inactive users show scattered and earlier logins. This suggests that engagement campaigns targeting inactive users could help improve retention, while loyalty rewards or personalized content can help sustain activity among the currently active users.</p>
+                        </div>
+                        </div>
+
+                    
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
